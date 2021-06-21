@@ -2,13 +2,17 @@
 <%=notice%>
 <table>
   <tr>
+    <th>ID</th>
     <th>タスク名</th>
     <th>内容</th>
+    <th>作成日時</th>
   </tr>
 <%@task.each do |task|%>
   <tr>
-    <td><%=task.title%></td>
+    <td><%=task.id%></td>
+    <td class="title"><%=task.title%></td>
     <td><%=task.content%></td>
+    <td class="create"><%=task.created_at.strftime('%Y/%m/%d')%></td>
     <td><%= link_to '詳細', task_path(task.id)%></td>
     <td><%= link_to '編集', edit_task_path(task.id) %></td>
     <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '削除します' } %>
