@@ -1,23 +1,24 @@
 class TasksController < ApplicationController
 
   def index
+      @task = Task.page(params[:page]).per(5)
     case params[:sort]
     when "search" then
       if params[:title].blank?
-        @task = Task.search_status(params[:status])
+        @task = @task.search_status(params[:status])
       elsif params[:status].blank?
-        @task = Task.search_title(params[:title])
+        @task = @task.search_title(params[:title])
       else
-        @task = Task.search_title(params[:title]).search_status(params[:status])
+        @task = @task.search_title(params[:title]).search_status(params[:status])
       end
     when "limit" then
-      @task = Task.order(limit: :desc)
+      @task = @task.order(limit: :desc)
     when "create" then
-      @task = Task.order(created_at: :desc)
+      @task = @task.order(created_at: :desc)
     when "priority" then
-      @task = Task.order(priority: :desc)
+      @task = @task.order(priority: :desc)
     else
-      @task = Task.all
+
     end
   end
 
