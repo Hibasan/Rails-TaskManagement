@@ -1,8 +1,27 @@
 class TasksController < ApplicationController
 
   def index
-    @task = Task.order("created_at DESC")
+    case params[:sort]
+    when "search" then
+      if params[:title].blank?
+        @task = Task.where(status: "#{params[:status]}")
+      elsif params[:status].blank?
+        @task = Task.where("title LIKE ?","%#{params[:title]}%")
+      else
+        @task = Task.where("title LIKE ?","%#{params[:title]}%").where(status: "#{params[:status]}")
+      end
+    when "limit" then
+      @task = Task.order(limit: :desc)
+    when "create" then
+      @task = Task.order(created_at: :desc)
+    else
+      @task = Task.all
+    end
   end
+
+
+
+
 
   def new
     @task = Task.new
