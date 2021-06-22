@@ -17,9 +17,9 @@
     <th>タスク名</th>
     <th>内容</th>
     <th>ステータス</th>
-    <th>優先度</th>
-    <th><%= link_to '期限', tasks_path(sort:"limit") %></th>
-    <th><%= link_to '作成日時', tasks_path(sort:"create") %></th>
+    <th><%= link_to '優先度', tasks_path(sort:"priority") %></th>
+    <th><%= link_to '終了期限', tasks_path(sort:"limit") %></th>
+    <th><%= link_to '登録日時', tasks_path(sort:"create") %></th>
   </tr>
 <%@task.each do |task|%>
   <tr>

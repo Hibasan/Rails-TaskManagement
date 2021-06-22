@@ -14,6 +14,8 @@ class TasksController < ApplicationController
       @task = Task.order(limit: :desc)
     when "create" then
       @task = Task.order(created_at: :desc)
+    when "priority" then
+      @task = Task.order(priority: :desc)
     else
       @task = Task.all
     end
