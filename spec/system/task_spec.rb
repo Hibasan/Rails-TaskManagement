@@ -33,7 +33,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(tasks[0]).to have_content "2030/06/21"
         expect(tasks[1]).to have_content "2020/06/21"
         expect(tasks[2]).to have_content "2010/06/21"
-
       end
     end
   end
