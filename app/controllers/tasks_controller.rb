@@ -18,13 +18,8 @@ class TasksController < ApplicationController
     when "priority" then
       @task = @task.order(priority: :desc)
     else
-
     end
   end
-
-
-
-
 
   def new
     @task = Task.new

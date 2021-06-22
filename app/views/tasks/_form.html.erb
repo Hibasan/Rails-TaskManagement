@@ -1,7 +1,7 @@
 <%= form_with(model: @task, local: true ) do |form| %>
   <div class="">
     <div class="">
-    <%= form.label :title, "タイトル"%>
+    <%= form.label :title, "タスク名"%>
     <%= form.text_field :title %>
     </div>
     <div class="">
@@ -20,16 +20,18 @@
     <%= form.label :limit, "期限"%>
     <%= form.date_field :limit %>
     </div>
-  </div>
   <%= form.submit "登録する",data: { confirm: 'この内容で登録します' } %>
+  </div>
 <% end %>
 <br>
 <%= link_to '一覧', root_path %>
+
 <% if @task.errors.any? %>
+
 <div id="error_explanation">
   <ul>
     <% @task.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+    <li class="list-group-item list-group-item-warning"><%= msg %></li>
     <% end %>
   </ul>
 </div>
