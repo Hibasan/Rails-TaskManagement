@@ -25,11 +25,7 @@
     <th><%= link_to '終了期限', tasks_path(sort:"limit") %></th>
     <th><%= link_to '登録日時', tasks_path(sort:"create") %></th>
     <th></th>
-    <th>
-      <ul class="dropdown-menu">
-      <li>aaaaa</li>
-      <li>aaaaa</li>
-    </ul></th>
+    <th></th>
     <th></th>
   </tr>
 <%@task.each do |task|%>
@@ -39,7 +35,7 @@
     <td><%=task.content%></td>
     <td><%=task.status%></td>
     <td><%=task.priority%></td>
-    <td><%=task.limit.strftime('%Y/%m/%d')%></td>
+    <td class="limit"><%=task.limit.strftime('%Y/%m/%d')%></td>
     <td class="create"><%=task.created_at.strftime('%Y/%m/%d')%></td>
     <td><%= link_to '詳細', task_path(task.id), class:"label label-warning"%></td>
     <td><%= link_to '編集', edit_task_path(task.id), class:"label label-success"%></td>

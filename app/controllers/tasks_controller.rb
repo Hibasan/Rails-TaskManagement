@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   def index
       @task = Task.page(params[:page]).per(5)
     case params[:sort]
+    when "" then
     when "search" then
       if params[:title].blank?
         @task = @task.search_status(params[:status])
