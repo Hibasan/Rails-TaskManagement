@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
 
   def index
-      @task = Task.page(params[:page]).per(5)
+      @task = current_user.tasks
+      binding.irb
+      @task = @task.page(params[:page]).per(5)
     case params[:sort]
     when "" then
     when "search" then
