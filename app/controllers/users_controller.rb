@@ -17,12 +17,12 @@ skip_before_action :login_required, only: [:new, :create]
   end
 
   def show
+    redirect_to tasks_path,notice:"アクセスできません" unless current_user.id == params[:id].to_i
   end
 
   private
   def user_params
     params.require(:user).permit(:name,:email,:password,:password_confirmation,:admin)
   end
-
 
 end
