@@ -1,5 +1,6 @@
+<h1>admin_new</h1>
 <h1>新規登録</h1>
-<%= form_with(model:@user,local: true) do |form| %>
+<%= form_with(model:@user,url:admin_users_path,local: true) do |form| %>
   <%= form.label :name , "名前"%>
   <%= form.text_field :name%>
   <%= form.label :email , "メールアドレス"%>

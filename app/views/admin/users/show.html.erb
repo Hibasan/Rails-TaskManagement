@@ -1,18 +1,8 @@
-<h1>タスク管理 <%=current_user.name%></h1>
-<%=notice%>
-<br>
-<div class="">
-  <%= form_with url: tasks_path,method: :get, local: true do |f| %>
-    <%= f.hidden_field :sort ,value: :search%>
-    <span>タスク名</span>
-    <%= f.text_field :title ,placeholder:"検索"%>
-    <span>ステータス</span>
-    <%= f.select :status,[[],["未着手","未着手"],["着手中","着手中"],["完了","完了"]] %>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
-<br>
-<div class="">
+<h1>admin_show</h1>
+
+<h1>マイページ  <%=@user.name%></h1>
+
+
 <table class="table">
   <tr>
     <th>投稿者</th>
@@ -28,7 +18,7 @@
     <th></th>
     <th></th>
   </tr>
-<%@task.each do |task|%>
+<%@user.tasks.each do |task|%>
   <tr>
     <td><%=task.user.name%></td>
     <td class="title"><%=task.title%></td>
@@ -43,9 +33,3 @@
   </tr>
 <%end%>
 </table>
-</div>
-
-<%= paginate @task %>
-<br>
-<%= link_to '登録', new_task_path %>
-<%= link_to 'TOP', tasks_path %>
