@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :name ,presence: true
-  validates :email ,presence: true
+  validates :email ,presence: true, uniqueness: true
   validates :password ,presence: true
   has_many :tasks, dependent: :destroy
   has_secure_password
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def admin_update
-    if User.where(admin:"true").count == 1 && self.admin == false
+    if User.where(admin:"true").count == 1 && self.admin == false && User.where(admin:"true") == self
         throw :abort
     end
   end

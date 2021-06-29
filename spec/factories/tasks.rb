@@ -6,6 +6,8 @@ FactoryBot.define do
     priority {'低'}
     limit {'2100-01-01'}
     created_at {"2020-06-21"}
+    association :user, factory: :user1
+
   end
   factory :task2 ,class: Task do
     title { '朝ごはん' }
@@ -14,6 +16,8 @@ FactoryBot.define do
     priority {'低'}
     limit {'2100-01-01'}
     created_at {"2010-06-21"}
+    association :user, factory: :user1
+
   end
   factory :task3 ,class: Task do
     title { '晩ごはん' }
@@ -22,6 +26,7 @@ FactoryBot.define do
     priority {'中'}
     limit {'2090-01-01'}
     created_at {"2030-06-21"}
+
   end
   factory :task4 ,class: Task do
     title { '昼ごはん' }
@@ -30,6 +35,7 @@ FactoryBot.define do
     priority {'高'}
     limit {'2110-01-01'}
     created_at {"2000-06-21"}
+
   end
   factory :task5 ,class: Task do
     title { '朝トレ' }
@@ -38,6 +44,7 @@ FactoryBot.define do
     priority {'高'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
+
   end
   factory :task6 ,class: Task do
     title { '昼トレ' }
@@ -46,6 +53,7 @@ FactoryBot.define do
     priority {'低'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
+
   end
   factory :task7 ,class: Task do
     title { '夜トレ' }
@@ -54,5 +62,6 @@ FactoryBot.define do
     priority {'高'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
+
   end
 end
