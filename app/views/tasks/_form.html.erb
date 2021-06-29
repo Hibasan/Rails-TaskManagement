@@ -21,18 +21,17 @@
     <%= form.date_field :limit %>
     </div>
   <%= form.submit "登録する",data: { confirm: 'この内容で登録します' } %>
+  <br>
+  <% if @task.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+      <li class="list-group-item list-group-item-warning"><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
   </div>
 <% end %>
 <br>
 <%= link_to '一覧', root_path %>
-
-<% if @task.errors.any? %>
-
-<div id="error_explanation">
-  <ul>
-    <% @task.errors.full_messages.each do |msg| %>
-    <li class="list-group-item list-group-item-warning"><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>

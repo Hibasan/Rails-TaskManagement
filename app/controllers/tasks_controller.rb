@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
 
   def index
-      @task = Task.page(params[:page]).per(5)
+      @task = current_user.tasks.includes(:user)
+      @task = @task.page(params[:page]).per(5)
     case params[:sort]
     when "" then
     when "search" then
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to root_path,notice:"タスクを追加しました"
     else

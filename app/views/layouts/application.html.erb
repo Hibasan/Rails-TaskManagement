@@ -10,6 +10,33 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+    <ul>
+      <li><%= current_user.name%>でログイン中</li>
+      <li><s><%= link_to 'アカウント登録', new_user_path %></s>アクセス制限</li>
+      <li><s><%= link_to 'ログイン', new_session_path %></s>アクセス制限</li>
+      <li><%= link_to 'タスク一覧', tasks_path %></li>
+      <li><%= link_to 'プロフィール', user_path(current_user.id) %></li>
+      <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+      <% if admin_user? %>
+        <li><%= link_to 'ユーザー一覧（管理者用）', admin_users_path %></li>
+        <% else %>
+        <li><s><%= link_to 'ユーザー一覧（管理者用）', admin_users_path %></s>アクセス制限</li>
+      <% end %>
+    </ul>
+    <% else %>
+    <ul>
+      <li>ログインしていません</li>
+      <li><%= link_to 'アカウント登録', new_user_path %></li>
+      <li><%= link_to 'ログイン', new_session_path %></li>
+      <li><s><%= link_to 'タスク一覧', tasks_path %></s>アクセス制限</li>
+      <li><s><%= link_to 'プロフィール' %></s>リンクなし</li>
+      <li><s><%= link_to "ログアウト" %></s>リンクなし</li>
+      <li><s><%= link_to 'ユーザー一覧（管理者用）', admin_users_path %></s>アクセス制限</li>
+    </ul>
+    <% end %>
+
+
     <%= yield %>
   </body>
 </html>
