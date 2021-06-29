@@ -37,7 +37,7 @@
     <td><%=task.priority%></td>
     <td class="limit"><%=task.limit.strftime('%Y/%m/%d')%></td>
     <td class="create"><%=task.created_at.strftime('%Y/%m/%d')%></td>
-    <td><%= link_to '詳細', task_path(task.id), class:"label label-warning"%></td>
+    <td><%= link_to '詳細', task_path(task.id), class:"label label-warning show"%></td>
     <td><%= link_to '編集', edit_task_path(task.id), class:"label label-success"%></td>
     <td><%= link_to '削除', task_path(task.id), class:"label label-danger",method: :delete ,data: { confirm: '削除します' } %>
   </tr>
