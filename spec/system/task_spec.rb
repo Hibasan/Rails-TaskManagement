@@ -245,7 +245,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         sleep 0.5
         click_link '終了期限'
         sleep 0.5
-        binding.irb
         tasks = all('.limit')
         expect(tasks[0]).to have_content "2110/01/01"
       end
