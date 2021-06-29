@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-      @task = current_user.tasks
+      @task = current_user.tasks.includes(:user)
       @task = @task.page(params[:page]).per(5)
     case params[:sort]
     when "" then

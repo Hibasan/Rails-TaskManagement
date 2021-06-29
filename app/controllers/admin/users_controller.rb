@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
 
   def index
-    @user = User.all
+    @user = User.all.includes(:tasks)
   end
 
   def new
