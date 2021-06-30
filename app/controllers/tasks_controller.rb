@@ -4,7 +4,10 @@ class TasksController < ApplicationController
       @task = current_user.tasks.includes(:user)
       @task = @task.page(params[:page]).per(5)
     case params[:sort]
-    when "" then
+    when "label" then
+      @label = Tasklabel.where(label_id: params[:label_id])
+      @label = @label.pluck(:task_id)
+      @task = @task.where(id: @label)
     when "search" then
       if params[:title].blank?
         @task = @task.search_status(params[:status])
@@ -30,7 +33,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
-    binding.irb
     if @task.save
       redirect_to root_path,notice:"タスクを追加しました"
     else
