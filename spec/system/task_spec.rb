@@ -129,7 +129,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         sleep 0.5
         click_link 'ユーザー一覧'
         sleep 0.5
-        page.all(".show")[1].click
+        page.all(".task-show")[1].click
         sleep 0.5
         expect(page).to have_content 'admin_show'
         expect(page).to have_content 'アスティル'
@@ -258,7 +258,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in 'session_password' ,with: 'password'
         click_button 'commit'
         sleep 0.5
-        page.all(".show")[2].click
+        page.all(".task-show")[2].click
         sleep 0.5
         expect(page).to have_content '昼ごはん'
         expect(page).to have_content '蒲焼さん太郎'

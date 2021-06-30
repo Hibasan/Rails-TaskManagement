@@ -3,12 +3,14 @@
 <br>
 <div class="">
   <%= form_with url: tasks_path,method: :get, local: true do |f| %>
-    <%= f.hidden_field :sort ,value: :search%>
     <span>タスク名</span>
     <%= f.text_field :title ,placeholder:"検索"%>
     <span>ステータス</span>
     <%= f.select :status,[[],["未着手","未着手"],["着手中","着手中"],["完了","完了"]] %>
-    <%= f.submit "検索" %>
+    <%= f.submit name: :sort,value: :search %>
+    <span>ラベル</span>
+    <%= f.select :label_id, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
+    <%= f.submit name: :sort,value: :label %>
   <% end %>
 </div>
 <br>
@@ -24,9 +26,7 @@
     </th>
     <th><%= link_to '終了期限', tasks_path(sort:"limit") %></th>
     <th><%= link_to '登録日時', tasks_path(sort:"create") %></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>タスク編集</th>
   </tr>
 <%@task.each do |task|%>
   <tr>
@@ -37,9 +37,11 @@
     <td><%=task.priority%></td>
     <td class="limit"><%=task.limit.strftime('%Y/%m/%d')%></td>
     <td class="create"><%=task.created_at.strftime('%Y/%m/%d')%></td>
-    <td><%= link_to '詳細', task_path(task.id), class:"label label-warning show"%></td>
-    <td><%= link_to '編集', edit_task_path(task.id), class:"label label-success"%></td>
-    <td><%= link_to '削除', task_path(task.id), class:"label label-danger",method: :delete ,data: { confirm: '削除します' } %>
+    <td>
+      <%= link_to '詳細', task_path(task.id), class:"label label-warning task-show"%>
+      <%= link_to '編集', edit_task_path(task.id), class:"label label-success"%>
+      <%= link_to '削除', task_path(task.id), class:"label label-danger",method: :delete ,data: { confirm: '削除します' } %>
+    </td>
   </tr>
 <%end%>
 </table>

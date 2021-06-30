@@ -20,18 +20,24 @@
     <%= form.label :limit, "期限"%>
     <%= form.date_field :limit %>
     </div>
-  <%= form.submit "登録する",data: { confirm: 'この内容で登録します' } %>
-  <br>
-  <% if @task.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-      <li class="list-group-item list-group-item-warning"><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-  </div>
+
+    <% Label.all.each do |label|%>
+    <%= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+    <%= label.name%>
+    <% end %>
+
+    <%= form.submit "登録する",data: { confirm: 'この内容で登録します' } %>
 <% end %>
+    <br>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+          <li class="list-group-item list-group-item-warning"><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 <br>
 <%= link_to '一覧', root_path %>

@@ -30,6 +30,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
+    binding.irb
     if @task.save
       redirect_to root_path,notice:"タスクを追加しました"
     else
@@ -62,6 +63,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title,:content,:limit,:status,:priority)
+    params.require(:task).permit(:title,:content,:limit,:status,:priority,label_ids:[])
   end
 end
