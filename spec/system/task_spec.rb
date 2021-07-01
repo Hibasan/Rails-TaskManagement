@@ -1,7 +1,13 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
-    @admin = FactoryBot.create(:task1,title: 'task')
+    FactoryBot.create(:task1)
+    FactoryBot.create(:task2)
+    FactoryBot.create(:task3)
+    FactoryBot.create(:task4)
+    FactoryBot.create(:task5)
+    FactoryBot.create(:task6)
+    FactoryBot.create(:task7)
     visit new_user_path
     sleep 0.5
   end
