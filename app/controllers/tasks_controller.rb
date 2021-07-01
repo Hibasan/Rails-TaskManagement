@@ -4,11 +4,11 @@ class TasksController < ApplicationController
       @task = current_user.tasks.includes(:user)
       @task = @task.page(params[:page]).per(5)
     case params[:sort]
-    when "label" then
+    when "ラベル検索" then
       @label = Tasklabel.where(label_id: params[:label_id])
       @label = @label.pluck(:task_id)
       @task = @task.where(id: @label)
-    when "search" then
+    when "検索" then
       if params[:title].blank?
         @task = @task.search_status(params[:status])
       elsif params[:status].blank?

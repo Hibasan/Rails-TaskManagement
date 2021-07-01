@@ -7,10 +7,10 @@
     <%= f.text_field :title ,placeholder:"検索"%>
     <span>ステータス</span>
     <%= f.select :status,[[],["未着手","未着手"],["着手中","着手中"],["完了","完了"]] %>
-    <%= f.submit name: :sort,value: :search %>
+    <%= f.submit "検索",name: :sort,value: "検索" %>
     <span>ラベル</span>
     <%= f.select :label_id, Label.all.collect { |p| [ p.name, p.id ] }, include_blank: true %>
-    <%= f.submit name: :sort,value: :label %>
+    <%= f.submit "ラベル検索",name: :sort,value: "ラベル検索" %>
   <% end %>
 </div>
 <br>
