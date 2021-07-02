@@ -7,8 +7,9 @@ FactoryBot.define do
     limit {'2100-01-01'}
     created_at {"2020-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label1
-    add_label2
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+    end
   end
 
   factory :task2 ,class: Task do
@@ -19,8 +20,9 @@ FactoryBot.define do
     limit {'2100-01-01'}
     created_at {"2010-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label1
-    add_label2
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label2).name) || FactoryBot.create(:label2))
+    end
   end
 
   factory :task3 ,class: Task do
@@ -31,8 +33,9 @@ FactoryBot.define do
     limit {'2090-01-01'}
     created_at {"2030-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label1
-    add_label2
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label3).name) || FactoryBot.create(:label3))
+    end
   end
 
   factory :task4 ,class: Task do
@@ -43,8 +46,9 @@ FactoryBot.define do
     limit {'2110-01-01'}
     created_at {"2000-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label1
-    add_label2
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
   end
   factory :task5 ,class: Task do
     title { '朝トレ' }
@@ -54,8 +58,10 @@ FactoryBot.define do
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label1
-    add_label2
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+      task.labels << (Label.find_by(name: build(:label2).name) || FactoryBot.create(:label2))
+    end
   end
 
   factory :task6 ,class: Task do
@@ -66,8 +72,10 @@ FactoryBot.define do
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label3
-    add_label4
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label3).name) || FactoryBot.create(:label3))
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
   end
 
   factory :task7 ,class: Task do
@@ -78,8 +86,10 @@ FactoryBot.define do
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
     user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
-    add_label3
-    add_label4
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
   end
 end
 

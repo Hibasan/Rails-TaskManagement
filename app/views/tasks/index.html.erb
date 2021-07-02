@@ -31,7 +31,7 @@
 <%@task.each do |task|%>
   <tr>
     <td><%=task.user.name%></td>
-    <td class="title"><%=task.title%></td>
+    <td class="task-title"><%=task.title%></td>
     <td><%=task.content%></td>
     <td><%=task.status%></td>
     <td><%=task.priority%></td>
@@ -39,8 +39,8 @@
     <td class="create"><%=task.created_at.strftime('%Y/%m/%d')%></td>
     <td>
       <%= link_to '詳細', task_path(task.id), class:"label label-warning task-show"%>
-      <%= link_to '編集', edit_task_path(task.id), class:"label label-success"%>
-      <%= link_to '削除', task_path(task.id), class:"label label-danger",method: :delete ,data: { confirm: '削除します' } %>
+      <%= link_to '編集', edit_task_path(task.id), class:"label label-success task-edit"%>
+      <%= link_to '削除', task_path(task.id), class:"label label-danger task-delete",method: :delete ,data: { confirm: '削除します' } %>
     </td>
   </tr>
 <%end%>
