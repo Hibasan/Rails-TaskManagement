@@ -1,15 +1,17 @@
 FactoryBot.define do
   factory :task1 ,class: Task do
-    title { 'test_title' }
+    title { 'task' }
     content { 'test_content' }
     status {'未着手'}
     priority {'低'}
     limit {'2100-01-01'}
     created_at {"2020-06-21"}
-    user_id {""}
-    association :user, factory: :user1
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+    end
   end
+
   factory :task2 ,class: Task do
     title { '朝ごはん' }
     content { 'うまい棒' }
@@ -17,10 +19,12 @@ FactoryBot.define do
     priority {'低'}
     limit {'2100-01-01'}
     created_at {"2010-06-21"}
-    user_id {""}
-    association :user, factory: :user2
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label2).name) || FactoryBot.create(:label2))
+    end
   end
+
   factory :task3 ,class: Task do
     title { '晩ごはん' }
     content { 'カロリーメイト' }
@@ -28,9 +32,12 @@ FactoryBot.define do
     priority {'中'}
     limit {'2090-01-01'}
     created_at {"2030-06-21"}
-    user_id {""}
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label3).name) || FactoryBot.create(:label3))
+    end
   end
+
   factory :task4 ,class: Task do
     title { '昼ごはん' }
     content { '蒲焼さん太郎' }
@@ -38,8 +45,10 @@ FactoryBot.define do
     priority {'高'}
     limit {'2110-01-01'}
     created_at {"2000-06-21"}
-    user_id {""}
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
   end
   factory :task5 ,class: Task do
     title { '朝トレ' }
@@ -48,9 +57,13 @@ FactoryBot.define do
     priority {'高'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
-    user_id {""}
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+      task.labels << (Label.find_by(name: build(:label2).name) || FactoryBot.create(:label2))
+    end
   end
+
   factory :task6 ,class: Task do
     title { '昼トレ' }
     content { '徒歩５０ｍ' }
@@ -58,9 +71,13 @@ FactoryBot.define do
     priority {'低'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
-    user_id {""}
-
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label3).name) || FactoryBot.create(:label3))
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
   end
+
   factory :task7 ,class: Task do
     title { '夜トレ' }
     content { 'タイピング' }
@@ -68,6 +85,32 @@ FactoryBot.define do
     priority {'高'}
     limit {'2095-01-01'}
     created_at {"1995-06-21"}
-    user_id {""}
+    user_id { (User.find_by(email: build(:user1).email) || FactoryBot.create(:user1)).id }
+    after(:build) do |task|
+      task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+      task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
+    end
+  end
+end
+
+private
+def add_label1
+  after(:build) do |task|
+    task.labels << (Label.find_by(name: build(:label1).name) || FactoryBot.create(:label1))
+  end
+end
+def add_label2
+  after(:build) do |task|
+    task.labels << (Label.find_by(name: build(:label2).name) || FactoryBot.create(:label2))
+  end
+end
+def add_label3
+  after(:build) do |task|
+    task.labels << (Label.find_by(name: build(:label3).name) || FactoryBot.create(:label3))
+  end
+end
+def add_label4
+  after(:build) do |task|
+    task.labels << (Label.find_by(name: build(:label4).name) || FactoryBot.create(:label4))
   end
 end
